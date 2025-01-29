@@ -12,11 +12,11 @@ RUN apt-get update && \
 RUN mkdir -p /etc/apt/keyrings
 
 # Descargar clave GPG de Docker y almacenarla en el directorio correcto
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | tee /etc/apt/keyrings/docker.gpg > /dev/null && \
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | tee /etc/apt/keyrings/docker.gpg > /dev/null && \
     chmod a+r /etc/apt/keyrings/docker.gpg
 
-# Agregar repositorio oficial de Docker
-RUN echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+# Agregar repositorio oficial de Docker para Debian
+RUN echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
     | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Actualizar lista de paquetes e instalar Docker
@@ -32,5 +32,6 @@ RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-c
 RUN usermod -aG docker jenkins
 
 USER jenkins
+
 
 
