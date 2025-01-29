@@ -12,7 +12,7 @@ RUN apt-get update && \
 RUN mkdir -p /etc/apt/keyrings
 
 # Descargar clave GPG de Docker y almacenarla en el directorio correcto
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | tee /etc/apt/keyrings/docker.gpg > /dev/null && \
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
     chmod a+r /etc/apt/keyrings/docker.gpg
 
 # Agregar repositorio oficial de Docker para Debian
